@@ -3,37 +3,37 @@
     <!-- 表单提交 -->
     <el-row>
       <el-col>
-        <h1 class="question-title">The Questionnaire Survey</h1>
+        <h1 class="question-title">Customer Service (Contact us)</h1>
       </el-col>
       <el-col>
         <el-form :model="form" label-position="top" :rules="formRules">
-          <p class="question-form__title">1. 請輸入Wowcher Code</p>
+          <p class="question-form__title">1. Wowcher Code</p>
           <el-form-item prop="wowcherCode">
             <el-input
               placeholder="Wowcher Code"
               v-model="form.wowcherCode"
             ></el-input>
           </el-form-item>
-          <p class="question-form__title">2. 請輸入名稱</p>
+          <p class="question-form__title">2. Your Name</p>
           <el-form-item prop="name">
             <el-input placeholder="Name" v-model="form.name"></el-input>
           </el-form-item>
-          <p class="question-form__title">3. 請輸入手機號</p>
+          <p class="question-form__title">3. Mobile Number</p>
           <el-form-item prop="phone">
             <el-input placeholder="Phone" v-model="form.phone"></el-input>
           </el-form-item>
-          <p class="question-form__title">4. 請輸入郵箱</p>
+          <p class="question-form__title">4. Email</p>
           <el-form-item prop="email">
             <el-input placeholder="Email" v-model="form.email"></el-input>
           </el-form-item>
-          <p class="question-form__title">5. 請選擇問題類型</p>
+          <p class="question-form__title">5. Question Type</p>
           <el-form-item prop="questionType">
             <el-input
               placeholder="Question Type"
               v-model="form.questionType"
             ></el-input>
           </el-form-item>
-          <p class="question-form__title">6. 請輸入問題</p>
+          <p class="question-form__title">6. Message</p>
           <el-form-item prop="question">
             <el-input
               type="textarea"
@@ -42,7 +42,7 @@
               v-model="form.question"
             ></el-input>
           </el-form-item>
-          <p class="question-form__title">7. 請上傳圖片</p>
+          <p class="question-form__title">7. Photos</p>
           <el-form-item prop="imgs">
             <el-upload
               action
