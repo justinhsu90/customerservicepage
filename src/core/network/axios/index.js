@@ -2,7 +2,7 @@ import axios from "axios";
 import qs from "qs";
 //axios的配置
 const instance = axios.create({
-  baseURL: "http://60.251.57.138:8000/data-server/",
+  baseURL: "https://api.magictrend.co.uk:8443/data-server/",
   // baseURL: "http://127.0.0.1:8080/data-server/",
   timeout: 12e4,
   headers: { "Content-Type": "application/x-www-form-urlencoded" }
