@@ -1,0 +1,13 @@
+@media screen and (min-width: 768px) {
+  .banner {
+    width: 980px !important;
+    margin: 0 auto;
+    background: #fff;
+  }
+}
+@media screen and (max-width: 768px) {
+  body{
+    background: white !important;
+  }
+}
+
