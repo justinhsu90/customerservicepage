@@ -1,5 +1,5 @@
-export default base64 => {
-  var arr = base64.split(","),
+export default dataurl => {
+  var arr = dataurl.split(","),
     mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]),
     n = bstr.length,

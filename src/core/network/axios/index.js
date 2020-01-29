@@ -9,7 +9,11 @@ const instance = axios.create({
 });
 // instance.defaults.headers.post[""] = "application/x-www-form-urlencoded";
 instance.interceptors.request.use(request => {
-  if (request.headers["Content-Type"] == "multipart/form-data") {
+  let contentType = request.headers["Content-Type"];
+  if (
+    contentType == "multipart/form-data" ||
+    contentType == "application/json"
+  ) {
     return request;
   }
   if (request.method == "post") {

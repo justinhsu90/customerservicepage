@@ -7,9 +7,15 @@
           <img class="question-logo" src="@/assets/img/logo.jpg" alt="" />
         </div>
         <h1 class="question-title">Customer Service (Contact us)</h1>
+        <p class="question-title-tip">提示</p>
       </el-col>
       <el-col>
-        <el-form :model="form" label-position="top" :rules="formRules">
+        <el-form
+          ref="form"
+          :model="form"
+          label-position="top"
+          :rules="formRules"
+        >
           <p class="question-form__title">1. Wowcher Code</p>
           <p class="question-form__tip">提示</p>
           <el-form-item prop="wowcherCode">
@@ -110,7 +116,6 @@ import {
   Select,
   Option
 } from "element-ui";
-// import toblob from '@/core/util/toblob';
 import toBase64 from "@/core/util/toBase64";
 import axios from "@/core/network/axios";
 export default {
@@ -135,7 +140,8 @@ export default {
       email: "",
       questionType: "",
       question: "",
-      imgs: []
+      imgs: [],
+      originImgs: []
     },
     formRules: Object.freeze({
       wowcherCode: {
@@ -180,25 +186,64 @@ export default {
     })
   }),
   methods: {
-    handleSubmit() {},
+    setValue() {
+      let formData = new FormData();
+      formData.append("wowcherCode", this.form.wowcherCode);
+      formData.append("customerName", this.form.name);
+      formData.append("email", this.form.email);
+      formData.append("phone", this.form.phone);
+      formData.append("caseType", this.form.questionType);
+      formData.append("message", this.form.question);
+      this.form.originImgs.forEach(file => {
+        formData.append("imageList", file, file.name);
+      });
+      return formData;
+    },
+    handleSubmit() {
+      this.$refs["form"].validate(valid => {
+        if (valid) {
+          axios({
+            url: "/customerservice/add",
+            method: "POST",
+            headers: {
+              "Content-Type": "multipart/form-data"
+            },
+            data: this.setValue()
+          }).then(
+            () => {
+              this.$message.success("上传成功");
+            },
+            () => {
+              this.$message.success("上传失败");
+            }
+          );
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
     handleBeforeUpload(file) {
-      let include = ["image/png", "image/jpeg", "image/jpg"];
-      if (!include.includes(file.type)) {
-        this.$message.error("上傳格式不對");
-        return false;
-      }
       let img = {
         name: file.name,
         url: toBase64(file)
       };
       this.form.imgs.push(img);
+      this.form.originImgs.push(file);
       return false;
     },
     hanldeRemove(file) {
       if (file.status == "success") {
-        this.form.imgs = this.form.imgs.filter(img => {
+        let index;
+        this.form.imgs = this.form.imgs.filter((img, i) => {
+          if (img.url == file.url) {
+            index = i;
+          }
           return img.url != file.url;
         });
+        if (typeof index == "number") {
+          this.form.originImgs.splice(index, 1);
+        }
       }
     }
   },
@@ -256,5 +301,10 @@ export default {
   width: 50%;
   margin: 0 auto;
   display: block;
+}
+.question-title-tip {
+  font-size: 14px;
+  color: #808080;
+  text-align: center;
 }
 </style>
