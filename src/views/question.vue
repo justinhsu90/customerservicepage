@@ -89,6 +89,7 @@
           </el-form-item>
           <el-form-item>
             <el-button
+              :loading="btnLoading"
               type="primary"
               class="question-form__submit"
               @click="handleSubmit"
@@ -101,6 +102,16 @@
     <footer class="question-copyright">
       Copyright © 2020 MagicTrend All Rights Reserved.
     </footer>
+    <div class="question-success" v-if="showSuccess">
+      <div class="question-success__title">標題</div>
+      <img
+        class="question-success__img"
+        src="@/assets/img/success.jpg"
+        alt=""
+      />
+      <div class="question-success__tip">提示</div>
+      <i class="question-success__icon" @click="this.showSuccess == false">X</i>
+    </div>
   </div>
 </template>
 
@@ -133,6 +144,8 @@ export default {
   // code  姓名 电话 邮箱  问题类型 你的问题  上传图片
   data: () => ({
     questionTypes: [],
+    btnLoading: false,
+    showSuccess: false,
     form: {
       wowcherCode: "",
       name: "",
@@ -178,11 +191,11 @@ export default {
       question: {
         required: true,
         message: "required"
-      },
-      imgs: {
-        required: true,
-        message: "此項必填"
       }
+      // imgs: {
+      //   required: true,
+      //   message: "此項必填"
+      // }
     })
   }),
   methods: {
@@ -205,6 +218,7 @@ export default {
     handleSubmit() {
       this.$refs["form"].validate(valid => {
         if (valid) {
+          this.btnLoading = true;
           axios({
             url: "/customerservice/add",
             method: "POST",
@@ -212,14 +226,23 @@ export default {
               "Content-Type": "multipart/form-data"
             },
             data: this.setValue()
-          }).then(
-            () => {
-              this.$message.success("上传成功");
-            },
-            () => {
-              this.$message.success("上传失败");
-            }
-          );
+          })
+            .then(
+              res => {
+                if (res) {
+                  this.$message.success("提交成功");
+                  this.showSuccess = true;
+                } else {
+                  this.$message.success("提交失敗");
+                }
+              },
+              () => {
+                this.$message.success("提交失敗");
+              }
+            )
+            .finally(() => {
+              this.btnLoading = false;
+            });
         } else {
           console.log("error submit!!");
           return false;
@@ -271,9 +294,6 @@ export default {
 }
 .question-logo {
   width: 200px;
-  @media screen and (max-width: 768px) {
-    width: 200px;
-  }
 }
 .question-title {
   text-align: center;
@@ -309,5 +329,45 @@ export default {
   font-size: 14px;
   color: #808080;
   text-align: center;
+}
+.question-success {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
+  transform: translate(-50%, -50%);
+  background: #f8f8f8;
+  padding: 20px 25px 30px 35px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  .question-success__icon {
+    position: absolute;
+    right: 10px;
+    color: white;
+    top: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: gray;
+  }
+  .question-success__img {
+    width: 70%;
+  }
+  .question-success__title {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #4caf50;
+  }
+  .question-success__tip {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+  }
 }
 </style>
