@@ -188,14 +188,17 @@ export default {
   methods: {
     setValue() {
       let formData = new FormData();
-      formData.append("wowcherCode", this.form.wowcherCode);
-      formData.append("customerName", this.form.name);
-      formData.append("email", this.form.email);
-      formData.append("phone", this.form.phone);
-      formData.append("caseType", this.form.questionType);
-      formData.append("message", this.form.question);
-      this.form.originImgs.forEach(file => {
-        formData.append("imageList", file, file.name);
+      let obj = {
+        wowcherCode: this.form.wowcherCode,
+        customerName: this.form.name,
+        email: this.form.email,
+        phone: this.form.phone,
+        caseType: this.form.questionType,
+        message: this.form.question
+      };
+      formData.append("data", JSON.stringify(obj));
+      this.form.originImgs.forEach((file, index) => {
+        formData.append(`image${index}`, file, file.name);
       });
       return formData;
     },
