@@ -110,7 +110,7 @@
         alt=""
       />
       <div class="question-success__tip">提示</div>
-      <i class="question-success__icon" @click="this.showSuccess == false">X</i>
+      <i class="question-success__icon" @click="showSuccess = false">X</i>
     </div>
   </div>
 </template>
@@ -334,7 +334,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 450px;
+  width: 550px;
   @media screen and (max-width: 768px) {
     width: 80%;
   }
@@ -353,6 +353,7 @@ export default {
     font-weight: bold;
     font-size: 20px;
     color: gray;
+    cursor: pointer;
   }
   .question-success__img {
     width: 70%;
@@ -361,7 +362,7 @@ export default {
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: 25px;
     color: #4caf50;
   }
   .question-success__tip {
