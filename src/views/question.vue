@@ -103,13 +103,13 @@
       Copyright © 2020 MagicTrend All Rights Reserved.
     </footer>
     <div class="question-success" v-if="showSuccess">
-      <div class="question-success__title">標題</div>
+      <div class="question-success__title">We Received your case.</div>
       <img
         class="question-success__img"
         src="@/assets/img/success.jpg"
         alt=""
       />
-      <div class="question-success__tip">提示</div>
+      <div class="question-success__tip">Our Customer Service Team will contact you regarding to your issue shortly, it may take up to 24 hours to reply your case. </div>
       <i class="question-success__icon" @click="this.showSuccess == false">X</i>
     </div>
   </div>
