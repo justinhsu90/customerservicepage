@@ -7,7 +7,10 @@
           <img class="question-logo" src="@/assets/img/logo.jpg" alt="" />
         </div>
         <h1 class="question-title">Customer Service (Contact us)</h1>
-        <p class="question-title-tip">Our Customer Service Team will contact you regarding to your issue shortly, it may take up to 24 hours to reply your case.</p>
+        <p class="question-title-tip">
+          Our Customer Service Team will contact you regarding to your issue
+          shortly, it may take up to 24 hours to reply your case.
+        </p>
       </el-col>
       <el-col>
         <el-form
@@ -17,7 +20,9 @@
           :rules="formRules"
         >
           <p class="question-form__title">1. Wowcher Code</p>
-          <p class="question-form__tip">Please enter a valid code, which is similar to "KDIW3D-KISHRO".</p>
+          <p class="question-form__tip">
+            Please enter a valid code, which is similar to "KDIW3D-KISHRO".
+          </p>
           <el-form-item prop="wowcherCode">
             <el-input
               placeholder="Wowcher Code"
@@ -33,7 +38,9 @@
             <el-input placeholder="Phone" v-model="form.phone"></el-input>
           </el-form-item>
           <p class="question-form__title">4. Email</p>
-          <p class="question-form__tip">Please enter your email in order to get further touch.</p>
+          <p class="question-form__tip">
+            Please enter your email in order to get further touch.
+          </p>
           <el-form-item prop="email">
             <el-input placeholder="Email" v-model="form.email"></el-input>
           </el-form-item>
@@ -71,11 +78,14 @@
             ></el-input>
           </el-form-item>
           <p class="question-form__title">7. Images or Videos (optional)</p>
-          <p class="question-form__tip">Please provide additional images or videos to address the problem. (Maximum 5 images or videos can be uploaded).</p>
+          <p class="question-form__tip">
+            Please provide additional images or videos to address the problem.
+            (Maximum 5 images or videos can be uploaded).
+          </p>
           <el-form-item prop="imgs">
             <el-upload
               action
-              accept="*"
+              accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
               list-type="picture-card"
               :before-upload="handleBeforeUpload"
               :on-remove="hanldeRemove"
@@ -99,15 +109,24 @@
     <footer class="question-copyright">
       Copyright © 2020 MagicTrend All Rights Reserved.
     </footer>
-    <div class="question-success" v-if="showSuccess">
-      <div class="question-success__title">We Received your case.</div>
-      <img
-        class="question-success__img"
-        src="@/assets/img/success.jpg"
-        alt=""
-      />
-      <div class="question-success__tip">Our Customer Service Team will contact you regarding to your issue shortly, it may take up to 24 hours to reply your case. </div>
-      <i class="question-success__icon" @click="this.showSuccess == false">X</i>
+    <div
+      class="question-success-container"
+      v-if="showSuccess"
+      @click="showSuccess = false"
+    >
+      <div class="question-success" @click.stop>
+        <div class="question-success__title">We Received your case.</div>
+        <img
+          class="question-success__img"
+          src="@/assets/img/success.jpg"
+          alt=""
+        />
+        <div class="question-success__tip">
+          Our Customer Service Team will contact you regarding to your issue
+          shortly, it may take up to 24 hours to reply your case.
+        </div>
+        <i class="question-success__icon" @click="showSuccess = false">X</i>
+      </div>
     </div>
   </div>
 </template>
@@ -227,14 +246,14 @@ export default {
             .then(
               res => {
                 if (res) {
-                  this.$message.success("提交成功");
+                  // this.$message.success("提交成功");
                   this.showSuccess = true;
                 } else {
-                  this.$message.success("提交失敗");
+                  // this.$message.success("提交失敗");
                 }
               },
               () => {
-                this.$message.success("提交失敗");
+                // this.$message.success("提交失敗");
               }
             )
             .finally(() => {
@@ -326,6 +345,14 @@ export default {
   font-size: 14px;
   color: #808080;
   text-align: center;
+}
+.question-success-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: transparent;
+  top: 0px;
+  left: 0px;
 }
 .question-success {
   position: fixed;

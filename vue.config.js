@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: "/opencase"
+  publicPath: "/wowcher/opencase"
 };
