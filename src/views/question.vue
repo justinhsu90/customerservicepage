@@ -40,10 +40,10 @@
           <p class="question-form__title">5. Topic</p>
           <p class="question-form__tip"></p>
           <el-form-item prop="questionType">
-            <el-input
+            <!-- <el-input
               placeholder="Question Type"
               v-model="form.questionType"
-            ></el-input>
+            ></el-input> -->
             <el-select
               class="question-form__select"
               v-model="form.questionType"
