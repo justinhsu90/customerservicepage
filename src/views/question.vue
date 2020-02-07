@@ -59,7 +59,8 @@
               <el-option
                 v-for="(item, index) in questionTypes"
                 :key="index"
-                :value="item.caseType"
+                :value="item.caseTypeCode"
+                :label="item.caseType"
               >
                 <span style="float: left">{{ item.caseType }}</span>
                 <span style="float: right; color: #8492a6; font-size: 13px">{{
@@ -222,7 +223,7 @@ export default {
         customerName: this.form.name,
         email: this.form.email,
         phone: this.form.phone,
-        caseType: this.form.questionType,
+        caseTypeCode: this.form.questionType,
         message: this.form.question
       };
       formData.append("data", JSON.stringify(obj));
