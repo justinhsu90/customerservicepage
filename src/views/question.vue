@@ -7,7 +7,7 @@
           <img class="question-logo" src="@/assets/img/logo.jpg" alt="" />
         </div>
         <h1 class="question-title">Customer Service (Contact us)</h1>
-        <p class="question-title-tip">提示</p>
+        <p class="question-title-tip">Our Customer Service Team will contact you regarding to your issue shortly, it may take up to 24 hours to reply your case.</p>
       </el-col>
       <el-col>
         <el-form
@@ -17,7 +17,7 @@
           :rules="formRules"
         >
           <p class="question-form__title">1. Wowcher Code</p>
-          <p class="question-form__tip">提示</p>
+          <p class="question-form__tip">Please enter a valid code, which is similar to "KDIW3D-KISHRO".</p>
           <el-form-item prop="wowcherCode">
             <el-input
               placeholder="Wowcher Code"
@@ -25,22 +25,20 @@
             ></el-input>
           </el-form-item>
           <p class="question-form__title">2. Your Name</p>
-          <p class="question-form__tip">提示</p>
           <el-form-item prop="name">
             <el-input placeholder="Name" v-model="form.name"></el-input>
           </el-form-item>
           <p class="question-form__title">3. Mobile Number</p>
-          <p class="question-form__tip">提示</p>
           <el-form-item prop="phone">
             <el-input placeholder="Phone" v-model="form.phone"></el-input>
           </el-form-item>
           <p class="question-form__title">4. Email</p>
-          <p class="question-form__tip">提示</p>
+          <p class="question-form__tip">Please enter your email in order to get further touch.</p>
           <el-form-item prop="email">
             <el-input placeholder="Email" v-model="form.email"></el-input>
           </el-form-item>
-          <p class="question-form__title">5. Question Type</p>
-          <p class="question-form__tip">提示</p>
+          <p class="question-form__title">5. Topic</p>
+          <p class="question-form__tip"></p>
           <el-form-item prop="questionType">
             <!-- <el-input
               placeholder="Question Type"
@@ -64,7 +62,6 @@
             </el-select>
           </el-form-item>
           <p class="question-form__title">6. Message</p>
-          <p class="question-form__tip">提示</p>
           <el-form-item prop="question">
             <el-input
               type="textarea"
@@ -73,8 +70,8 @@
               v-model="form.question"
             ></el-input>
           </el-form-item>
-          <p class="question-form__title">7. Photos</p>
-          <p class="question-form__tip">提示</p>
+          <p class="question-form__title">7. Images or Videos (optional)</p>
+          <p class="question-form__tip">Please provide additional images or videos to address the problem. (Maximum 5 images or videos can be uploaded).</p>
           <el-form-item prop="imgs">
             <el-upload
               action
