@@ -4,7 +4,7 @@ import qs from "qs";
 const instance = axios.create({
   baseURL: "https://api.magictrend.co.uk:8443/data-server/",
   // baseURL: "https://127.0.0.1:8443/data-server/",
-  timeout: 12e4,
+  timeout: 180000,
   headers: { "Content-Type": "application/x-www-form-urlencoded" }
 });
 // instance.defaults.headers.post[""] = "application/x-www-form-urlencoded";
